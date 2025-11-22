@@ -52,9 +52,14 @@ app.get('/', (req, res) => {
 // defined route / API
 app.get('/apps', async(req, res) => {
     try{
-        const cursor = appsCol.find({});
+        const { limit=0, skip=0 } = req.query;
+        // const cursor = appsCol.find({});
+        const cursor = appsCol.find({}).limit(Number(limit)).skip(Number(skip)).project({
+            title: 1, image: 1, downloads: 1, ratingAvg: 1
+        });
         const allApps = await cursor.toArray();
-        res.send(allApps);
+        const appsCount = await appsCol.countDocuments({});
+        res.send({total: appsCount, apps: allApps});
     } catch(err){
         console.log(err);
         res.status(500).json({error: 'Internal server error'});

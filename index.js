@@ -52,9 +52,18 @@ app.get('/', (req, res) => {
 // defined route / API
 app.get('/apps', async(req, res) => {
     try{
-        const { limit=0, skip=0 } = req.query;
+        // get limit, skip, sort and order from query, on API call
+        const { limit=0, skip=0, sort = 'ratingAvg', order = 'desc', search = '' } = req.query;
         // const cursor = appsCol.find({});
-        const cursor = appsCol.find({}).limit(Number(limit)).skip(Number(skip)).project({
+        // set sort option, by default ratingAvg and desc
+        const sortOptions = {};
+        sortOptions[sort] = order === 'desc' ? -1 : 1;
+        // handle search
+        const query = {};
+        if(search){
+            query['title'] = { $regex: search, $options: "i" }
+        }
+        const cursor = appsCol.find(query).sort(sortOptions).limit(Number(limit)).skip(Number(skip)).project({
             title: 1, image: 1, downloads: 1, ratingAvg: 1
         });
         const allApps = await cursor.toArray();

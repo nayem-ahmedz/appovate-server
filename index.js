@@ -6,15 +6,23 @@ const port = process.env.PORT || 3000;
 
 // middleware
 require('dotenv').config();
-app.use(cors());
+// cors setup
+const allowedOrigins = [
+  // 'http://localhost:5173',
+  'https://appovate.netlify.app'
+]
+app.use(cors({
+  origin: allowedOrigins
+}));
+// parse body from req
 app.use(express.json());
 
-app.use(async (req, res, next) => {
-    console.log(`
-        ${req.method} - ${req.path} from ${req.host} at ${new Date().toLocaleString()}
-    `);
-    next();
-});
+// app.use(async (req, res, next) => {
+//     console.log(`
+//         ${req.method} - ${req.path} from ${req.host} at ${new Date().toLocaleString()}
+//     `);
+//     next();
+// });
 
 const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.oguoxou.mongodb.net/?appName=Cluster0`;
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version

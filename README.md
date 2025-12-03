@@ -22,7 +22,7 @@ Backend for AppoVate Web Application
 ## Project Timeline
 - Created on: 21 Nov 2025
 - Completed on: 24 Nov 2025
-- Last updated on: 24 Nov 2025
+- Last updated on: 4 Dec
 
 ## Installation Instructions
 To run the AppoVate server application locally, follow these steps:
@@ -50,14 +50,13 @@ To run the AppoVate server application locally, follow these steps:
    ```
 ## For setting up front-end
 The front-end for this project is in a separate repository. You can find it here:
-[Appovate Server Repo](https://github.com/nayem-ahmedz/appo-vate)
+[Appovate Frontend Repo](https://github.com/nayem-ahmedz/appo-vate)
 
 ## Contributing
 Contributions are welcome! If you have suggestions for improvements, bug fixes, or new features, feel free to open an issue or submit a pull request.
 
 ## live link
 Front-end : [Appovate Web](https://appovate.netlify.app/)
-<!-- [Appovate Web](https://appovate.netlify.app/) -->
 Backend : coming soon...
 
 Feel free to contact for any query!
